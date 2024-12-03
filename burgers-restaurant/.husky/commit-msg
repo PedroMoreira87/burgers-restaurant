@@ -1,0 +1,9 @@
+echo '📝 Checking the commit message'
+
+# Run commitlint to validate the commit message
+npx commitlint --edit || {
+  echo '❌ Commit message check failed. Please follow the commit message guidelines and try again.'
+  exit 1
+}
+
+echo '✅ Commit message is valid! Committing your changes now.'

@@ -1,0 +1,24 @@
+echo '🩺 Starting pre-commit checks'
+
+# Run ESLint on staged files
+npx eslint . --fix ||
+(
+  echo '⚙️❌ ESLint Check Failed. Make the required changes listed above, add changes, and try to commit again.'
+  exit 1
+)
+
+# Run Prettier to format files
+npx prettier . --write ||
+(
+  echo '🎨❌ Prettier Formatting Failed. Make the changes required above.'
+  exit 1
+)
+
+# Run Stylelint on SCSS/CSS files
+npx stylelint "src/**/*.{css,scss}" --fix ||
+(
+  echo '💅❌ Stylelint Check Failed. Make the changes required above, add changes, and try to commit again.'
+  exit 1
+)
+
+echo '✅ All pre-commit checks passed!'
