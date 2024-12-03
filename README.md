@@ -48,6 +48,12 @@ Husky is used to manage Git hooks, such as pre-commit hooks. To set it up, run t
 npm run prepare
 ```
 
+## Setting up Project Colors
+
+```bash
+ npm run prebuild
+```
+
 ## Running the app
 
 ### Development Mode
