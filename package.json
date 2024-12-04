@@ -9,7 +9,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "prepare": "husky"
+    "prepare": "husky",
+    "eslint": "eslint . --fix"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.4.0",

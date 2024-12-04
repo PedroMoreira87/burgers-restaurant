@@ -2,12 +2,12 @@ name: Burgers Restaurant
 
 on:
   push:
-    branches: ['main']
-    tags: ['v*']
-    paths: ['burgers-restaurant/**']
+    branches: [ 'main' ]
+    tags: [ 'v*' ]
+    paths: [ 'burgers-restaurant/**' ]
   pull_request:
-    branches: ['main']
-    paths: ['burgers-restaurant/**']
+    branches: [ 'main' ]
+    paths: [ 'burgers-restaurant/**' ]
   workflow_dispatch:
 
 permissions:
@@ -23,10 +23,10 @@ jobs:
       - name: Check out repo code
         uses: actions/checkout@v4
 
-      - name: Set up Bun
-        uses: oven-sh/setup-bun@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          bun-version: 'latest'
+          node-version: 18
 
       - name: Install Dependencies
         run: npm install
@@ -54,10 +54,10 @@ jobs:
           role-to-assume: arn:aws:iam::654654462173:role/GitHubActionsRole
           aws-region: us-east-1
 
-      - name: Set up Bun
-        uses: oven-sh/setup-bun@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          bun-version: 'latest'
+          node-version: 18
 
       - name: Install Dependencies
         run: npm install
@@ -91,22 +91,16 @@ jobs:
           role-to-assume: arn:aws:iam::654654462173:role/GitHubActionsRole
           aws-region: us-east-1
 
-      - name: Set up Bun
-        uses: oven-sh/setup-bun@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          bun-version: 'latest'
+          node-version: 18
 
       - name: Install Dependencies
         run: npm install
 
       - name: Run ESLint
         run: npm run eslint
-
-      - name: Create .env.production file
-        run: |
-          echo "VITE_USER_POOL_ID=${{ secrets.VITE_USER_POOL_ID }}" > burgers-restaurant/.env.production
-          echo "VITE_CLIENT_ID=${{ secrets.VITE_CLIENT_ID }}" >> burgers-restaurant/.env.production
-          echo "VITE_GOOGLE_MAPS_API_KEY=${{ secrets.VITE_GOOGLE_MAPS_API_KEY }}" >> burgers-restaurant/.env.production
 
       - name: Build Project
         run: npm run build
