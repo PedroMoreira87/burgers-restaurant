@@ -2,12 +2,10 @@ name: Burgers Restaurant
 
 on:
   push:
-    branches: ['main']
-    tags: ['v*']
-    paths: ['burgers-restaurant/**']
+    branches: [ 'main' ]
+    tags: [ 'v*' ]
   pull_request:
-    branches: ['main']
-    paths: ['burgers-restaurant/**']
+    branches: [ 'main' ]
   workflow_dispatch:
 
 permissions:
@@ -69,7 +67,7 @@ jobs:
         run: npm run build
 
       - name: Sync files to S3
-        run: aws s3 sync burgers-restaurant/dist s3://burgers-restaurant --delete
+        run: aws s3 sync dist s3://burgers-restaurant --delete
 
       - name: Invalidate CloudFront Distribution
         run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
@@ -106,7 +104,7 @@ jobs:
         run: npm run build
 
       - name: Sync files to S3
-        run: aws s3 sync burgers-restaurant/dist s3://burgers-restaurant --delete
+        run: aws s3 sync dist s3://burgers-restaurant --delete
 
       - name: Invalidate CloudFront Distribution
         run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
