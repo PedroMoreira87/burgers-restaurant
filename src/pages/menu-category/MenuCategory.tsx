@@ -6,6 +6,7 @@ import './MenuCategory.scss';
 import chevronDown from '../../assets/icons/chevron-down.svg';
 import chevronUp from '../../assets/icons/chevron-up.svg';
 import noImage from '../../assets/images/no-image.svg';
+import { IItem } from '../../interfaces/menu.interface.ts';
 import { RootState } from '../../store';
 import Modal from '../modal/Modal.tsx';
 
@@ -20,13 +21,13 @@ const MenuCategory: React.FC<MenuCategoryProps> = ({ category }) => {
 
   const [isOpen, setIsOpen] = useState<boolean>(true);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
-  const [selectedItem, setSelectedItem] = useState<any>(null);
+  const [selectedItem, setSelectedItem] = useState<IItem | null>(null);
 
   const toggleMenu = () => {
     setIsOpen((prev) => !prev);
   };
 
-  const openModal = (item: any) => {
+  const openModal = (item: IItem) => {
     setSelectedItem(item);
     setModalOpen(true);
   };
