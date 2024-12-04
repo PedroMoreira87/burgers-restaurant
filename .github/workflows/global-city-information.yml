@@ -2,12 +2,12 @@ name: Burgers Restaurant
 
 on:
   push:
-    branches: [ 'main' ]
-    tags: [ 'v*' ]
-    paths: [ 'burgers-restaurant/**' ]
+    branches: ['main']
+    tags: ['v*']
+    paths: ['burgers-restaurant/**']
   pull_request:
-    branches: [ 'main' ]
-    paths: [ 'burgers-restaurant/**' ]
+    branches: ['main']
+    paths: ['burgers-restaurant/**']
   workflow_dispatch:
 
 permissions:
