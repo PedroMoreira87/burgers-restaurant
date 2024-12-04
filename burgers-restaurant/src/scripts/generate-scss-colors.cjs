@@ -22,6 +22,7 @@ $secondary-gray: #2C2C2C;
 $tertiary-gray: #464646;
 $primary-shadow: #00000024;
 $primary-border-color: #EEE;
+$quaternary-gray: #5F5F5F;
 `;
     const filePath = path.resolve(__dirname, '../styles/_colors.scss');
     fs.writeFileSync(filePath, scssContent);

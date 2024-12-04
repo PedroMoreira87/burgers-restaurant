@@ -58,19 +58,7 @@ const MenuCategory: React.FC<MenuCategoryProps> = ({ category }) => {
           ))}
         </section>
       )}
-      <Modal isOpen={modalOpen} onClose={closeModal}>
-        {selectedItem && (
-          <div className="modal__details">
-            <img src={selectedItem.images?.[0]?.image || noImage} alt={selectedItem.name} />
-            <h2>{selectedItem.name}</h2>
-            <p>{selectedItem.description}</p>
-            <p>
-              {t('currency')}
-              {selectedItem.price.toFixed(2)}
-            </p>
-          </div>
-        )}
-      </Modal>
+      <Modal isOpen={modalOpen} onClose={closeModal} selectedItem={selectedItem} />
     </main>
   );
 };

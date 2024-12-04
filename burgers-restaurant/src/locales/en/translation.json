@@ -9,5 +9,10 @@
   "drinks": "Drinks",
   "cart": "Cart",
   "subtotal": "Subtotal",
-  "total": "Total"
+  "total": "Total",
+  "select": "Select the maximum of",
+  "option": "option",
+  "options": "options",
+  "price": "Price",
+  "add-to-order": "Add to Order"
 }

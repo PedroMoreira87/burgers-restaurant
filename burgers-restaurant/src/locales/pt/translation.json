@@ -9,5 +9,10 @@
   "drinks": "Bebidas",
   "cart": "Carrinho",
   "subtotal": "Subtotal",
-  "total": "Total"
+  "total": "Total",
+  "select": "Selecione o máximo de",
+  "option": "opção",
+  "options": "opções",
+  "price": "Preço",
+  "add-to-order": "Adicionar ao pedido"
 }

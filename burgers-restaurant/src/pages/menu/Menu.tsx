@@ -1,20 +1,23 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import minus from '../../assets/icons/minus.svg';
 import plus from '../../assets/icons/plus.svg';
 import search from '../../assets/icons/search.svg';
 import { RootState } from '../../store';
+import { cartActions } from '../../store/cart-slice.ts';
 import { a11yProps } from '../../utils/a11yProps.ts';
 import MenuCategory from '../menu-category/MenuCategory.tsx';
-import TabPanel from '../tab-panel/TabPanel.tsx';
 import './Menu.scss';
+import TabPanel from '../tab-panel/TabPanel.tsx';
 
 const Menu = () => {
   const { t } = useTranslation();
   const [value, setValue] = useState<number>(0);
   const menu = useSelector((state: RootState) => state.menu.data);
+  const cart = useSelector((state: RootState) => state.cart);
+  const dispatch = useDispatch();
 
   const handleTabChange = (newValue: number) => {
     setValue(newValue);
@@ -24,6 +27,32 @@ const Menu = () => {
 
   const categoryImage = (name: string) => {
     return menu?.sections.find((item) => item.name.toLowerCase() === name)?.images[0].image || '';
+  };
+
+  const handleDecreaseQuantity = (id: string) => {
+    const item = cart.items.find((item) => item.id === id);
+    if (!item) {
+      console.error(`Item with id ${id} not found in cart`);
+      return;
+    }
+    dispatch(cartActions.removeItemFromCart(id));
+  };
+
+  const handleIncreaseQuantity = (id: string) => {
+    const item = cart.items.find((item) => item.id === id);
+    if (!item) return;
+    dispatch(
+      cartActions.addItemToCart({
+        id: item.id,
+        name: item.name,
+        price: item.price / item.quantity,
+        modifiers: item.modifiers || [],
+      }),
+    );
+  };
+
+  const calculateSubtotal = () => {
+    return cart.items.reduce((total, item) => total + item.totalPrice, 0).toFixed(2);
   };
 
   return (
@@ -94,27 +123,47 @@ const Menu = () => {
         <div className="menu__cart">
           <div className="menu__cart-title">{t('cart')}</div>
           <div className="menu__cart-items">
-            <div className="menu__item-price">
-              <div className="menu__item">item</div>
-              <div className="menu__price">{t('currency')}3333</div>
-            </div>
-            <div className="menu__counter">
-              <button className="menu__button">
-                <img src={minus} alt="Minus" />
-              </button>
-              <span className="menu__counter-number">1</span>
-              <button className="menu__button">
-                <img src={plus} alt="Plus" />
-              </button>
-            </div>
+            {cart.items.map((item) => (
+              <div key={item.id} className="menu__cart-item">
+                <div className="menu__item-price">
+                  <div className="menu__item">
+                    {item.name}
+                    {item.modifiers?.map((mod) => (
+                      <span key={mod.id} className="menu__item--modifier">
+                        {mod.name}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="menu__price">
+                    {t('currency')}
+                    {item.totalPrice.toFixed(2)}
+                  </div>
+                </div>
+                <div className="menu__counter">
+                  <button className="menu__button" onClick={() => handleDecreaseQuantity(item.id)}>
+                    <img src={minus} alt="Minus" />
+                  </button>
+                  <span className="menu__counter-number">{item.quantity}</span>
+                  <button className="menu__button" onClick={() => handleIncreaseQuantity(item.id)}>
+                    <img src={plus} alt="Plus" />
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
           <div className="menu__cart-subtotal-price">
             <div className="menu__item">{t('subtotal')}</div>
-            <div className="menu__price">{t('currency')}3333</div>
+            <div className="menu__price">
+              {t('currency')}
+              {calculateSubtotal()}
+            </div>
           </div>
           <div className="menu__cart-total-price">
             <div className="menu__item--total">{t('total')}:</div>
-            <div className="menu__price--total">{t('currency')}3333</div>
+            <div className="menu__price--total">
+              {t('currency')}
+              {calculateSubtotal()}
+            </div>
           </div>
         </div>
       </section>
