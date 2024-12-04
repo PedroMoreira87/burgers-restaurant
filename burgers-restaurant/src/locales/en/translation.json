@@ -6,5 +6,8 @@
   "search": "Search menu items",
   "burgers": "Burgers",
   "desserts": "Desserts",
-  "drinks": "Drinks"
+  "drinks": "Drinks",
+  "cart": "Cart",
+  "subtotal": "Subtotal",
+  "total": "Total"
 }

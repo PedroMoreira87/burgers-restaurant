@@ -4,16 +4,16 @@
   width: 100%;
 
   &__title {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
     align-items: center;
     background: none;
     border: none;
     border-radius: 0;
     cursor: pointer;
+    display: flex;
+    justify-content: space-between;
     margin-bottom: 1.75rem;
     padding: 0;
+    width: 100%;
 
     &:hover {
       background-color: $secondary-color-hover;
@@ -23,7 +23,7 @@
   &__title-text {
     font-size: 1.5rem;
     font-weight: 500;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.0313rem;
   }
 
   &__data {
@@ -33,42 +33,66 @@
   }
 
   &__item {
+    align-items: center;
+    background: none;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
     display: flex;
     gap: 1rem;
     justify-content: space-between;
+    overflow: hidden;
+    width: 100%;
+
+    &:hover {
+      background-color: $secondary-color-hover;
+    }
+
+    @media (width <= 768px) {
+      align-items: flex-start;
+      flex-direction: column;
+    }
   }
 
   &__data-text {
+    align-items: start;
     display: flex;
+    flex: 1;
     flex-direction: column;
     gap: 0.25rem;
-    width: 75%;
+    justify-content: center;
+    margin-right: 1rem;
+    min-width: 0;
   }
 
   &__name {
+    color: $secondary-black;
     font-size: 1rem;
     font-weight: 500;
-    color: $secondary-black;
   }
 
   &__description {
+    color: $tertiary-gray;
     font-size: 1rem;
     font-weight: 300;
-    color: $tertiary-gray;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    width: 90%;
   }
 
   &__price {
     color: $secondary-black;
     font-size: 1rem;
     font-weight: 500;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.0313rem;
   }
 
-  &__image {
-    width: 8rem;
-    height: 5.3125rem;
+  &__img {
+    border-radius: 0.25rem;
+    flex-shrink: 0;
+    max-height: 5.3125rem;
+    max-width: 8rem;
+    object-fit: cover;
   }
 }

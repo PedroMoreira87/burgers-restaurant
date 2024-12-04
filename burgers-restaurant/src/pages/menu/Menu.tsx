@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
+import minus from '../../assets/icons/minus.svg';
+import plus from '../../assets/icons/plus.svg';
 import search from '../../assets/icons/search.svg';
-import desserts from '../../assets/images/desserts.svg';
-import drinks from '../../assets/images/drinks.svg';
 import { RootState } from '../../store';
 import { a11yProps } from '../../utils/a11yProps.ts';
 import MenuCategory from '../menu-category/MenuCategory.tsx';
@@ -21,6 +21,10 @@ const Menu = () => {
   };
 
   const handleSearchChange = () => {};
+
+  const categoryImage = (name: string) => {
+    return menu?.sections.find((item) => item.name.toLowerCase() === name)?.images[0].image || '';
+  };
 
   return (
     <main className="menu">
@@ -40,12 +44,10 @@ const Menu = () => {
             >
               <img
                 className={`menu__tab-img ${value === 0 ? 'menu__tab-img--active' : ''}`}
-                src={
-                  menu?.sections.flatMap((section) => section.images).find((image) => image.id === 1550)?.image || ''
-                }
+                src={categoryImage('burgers')}
                 alt="Burger"
               />
-              <div className={`menu__tab-text ${value === 0 ? 'menu__tab-text--active' : ''}`}>{t('burger')}</div>
+              <div className={`menu__tab-text ${value === 0 ? 'menu__tab-text--active' : ''}`}>{t('burgers')}</div>
               {value === 0 && <div className="menu__tab-line" />}
             </button>
             <button
@@ -57,7 +59,7 @@ const Menu = () => {
             >
               <img
                 className={`menu__tab-img ${value === 1 ? 'menu__tab-img--active' : ''}`}
-                src={drinks}
+                src={categoryImage('drinks')}
                 alt="Drinks"
               />
               <div className={`menu__tab-text ${value === 1 ? 'menu__tab-text--active' : ''}`}>{t('drinks')}</div>
@@ -72,7 +74,7 @@ const Menu = () => {
             >
               <img
                 className={`menu__tab-img ${value === 2 ? 'menu__tab-img--active' : ''}`}
-                src={desserts}
+                src={categoryImage('desserts')}
                 alt="Desserts"
               />
               <div className={`menu__tab-text ${value === 2 ? 'menu__tab-text--active' : ''}`}>{t('desserts')}</div>
@@ -88,6 +90,32 @@ const Menu = () => {
           <TabPanel value={value} index={2}>
             <MenuCategory category="desserts" />
           </TabPanel>
+        </div>
+        <div className="menu__cart">
+          <div className="menu__cart-title">{t('cart')}</div>
+          <div className="menu__cart-items">
+            <div className="menu__item-price">
+              <div className="menu__item">item</div>
+              <div className="menu__price">{t('currency')}3333</div>
+            </div>
+            <div className="menu__counter">
+              <button className="menu__button">
+                <img src={minus} alt="Minus" />
+              </button>
+              <span className="menu__counter-number">1</span>
+              <button className="menu__button">
+                <img src={plus} alt="Plus" />
+              </button>
+            </div>
+          </div>
+          <div className="menu__cart-subtotal-price">
+            <div className="menu__item">{t('subtotal')}</div>
+            <div className="menu__price">{t('currency')}3333</div>
+          </div>
+          <div className="menu__cart-total-price">
+            <div className="menu__item--total">{t('total')}:</div>
+            <div className="menu__price--total">{t('currency')}3333</div>
+          </div>
         </div>
       </section>
     </main>
