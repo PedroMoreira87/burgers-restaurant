@@ -5,17 +5,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import minus from '../../assets/icons/minus.svg';
 import plus from '../../assets/icons/plus.svg';
 import search from '../../assets/icons/search.svg';
+import burger from '../../assets/images/burger.svg';
+import dessert from '../../assets/images/dessert.svg';
+import drink from '../../assets/images/drink.svg';
+import { IModifierItem } from '../../interfaces/menu.interface.ts';
 import { RootState } from '../../store';
 import { cartActions } from '../../store/cart-slice.ts';
+import './Menu.scss';
 import { a11yProps } from '../../utils/a11yProps.ts';
 import MenuCategory from '../menu-category/MenuCategory.tsx';
-import './Menu.scss';
 import TabPanel from '../tab-panel/TabPanel.tsx';
 
 const Menu = () => {
   const { t } = useTranslation();
   const [value, setValue] = useState<number>(0);
-  const menu = useSelector((state: RootState) => state.menu.data);
+  // const menu = useSelector((state: RootState) => state.menu.data);
   const cart = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch();
 
@@ -25,28 +29,23 @@ const Menu = () => {
 
   const handleSearchChange = () => {};
 
-  const categoryImage = (name: string) => {
-    return menu?.sections.find((item) => item.name.toLowerCase() === name)?.images[0].image || '';
+  //TODO images from the api are not good
+  // const categoryImage = (name: string) => {
+  //   return menu?.sections.find((item) => item.name.toLowerCase() === name)?.images[0].image || '';
+  // };
+
+  const handleDecreaseQuantity = (id: string, modifiers: IModifierItem[]) => {
+    dispatch(cartActions.removeItemFromCart({ id, modifiers }));
   };
 
-  const handleDecreaseQuantity = (id: string) => {
-    const item = cart.items.find((item) => item.id === id);
-    if (!item) {
-      console.error(`Item with id ${id} not found in cart`);
-      return;
-    }
-    dispatch(cartActions.removeItemFromCart(id));
-  };
-
-  const handleIncreaseQuantity = (id: string) => {
-    const item = cart.items.find((item) => item.id === id);
-    if (!item) return;
+  const handleIncreaseQuantity = (id: string, modifiers: IModifierItem[]) => {
     dispatch(
       cartActions.addItemToCart({
-        id: item.id,
-        name: item.name,
-        price: item.price / item.quantity,
-        modifiers: item.modifiers || [],
+        id,
+        name: '',
+        price: 0,
+        quantity: 1,
+        modifiers,
       }),
     );
   };
@@ -73,7 +72,7 @@ const Menu = () => {
             >
               <img
                 className={`menu__tab-img ${value === 0 ? 'menu__tab-img--active' : ''}`}
-                src={categoryImage('burgers')}
+                src={burger}
                 alt="Burger"
               />
               <div className={`menu__tab-text ${value === 0 ? 'menu__tab-text--active' : ''}`}>{t('burgers')}</div>
@@ -86,11 +85,7 @@ const Menu = () => {
               onClick={() => handleTabChange(1)}
               {...a11yProps(1)}
             >
-              <img
-                className={`menu__tab-img ${value === 1 ? 'menu__tab-img--active' : ''}`}
-                src={categoryImage('drinks')}
-                alt="Drinks"
-              />
+              <img className={`menu__tab-img ${value === 1 ? 'menu__tab-img--active' : ''}`} src={drink} alt="Drinks" />
               <div className={`menu__tab-text ${value === 1 ? 'menu__tab-text--active' : ''}`}>{t('drinks')}</div>
               {value === 1 && <div className="menu__tab-line" />}
             </button>
@@ -103,7 +98,7 @@ const Menu = () => {
             >
               <img
                 className={`menu__tab-img ${value === 2 ? 'menu__tab-img--active' : ''}`}
-                src={categoryImage('desserts')}
+                src={dessert}
                 alt="Desserts"
               />
               <div className={`menu__tab-text ${value === 2 ? 'menu__tab-text--active' : ''}`}>{t('desserts')}</div>
@@ -140,11 +135,11 @@ const Menu = () => {
                   </div>
                 </div>
                 <div className="menu__counter">
-                  <button className="menu__button" onClick={() => handleDecreaseQuantity(item.id)}>
+                  <button className="menu__button" onClick={() => handleDecreaseQuantity(item.id, item.modifiers)}>
                     <img src={minus} alt="Minus" />
                   </button>
                   <span className="menu__counter-number">{item.quantity}</span>
-                  <button className="menu__button" onClick={() => handleIncreaseQuantity(item.id)}>
+                  <button className="menu__button" onClick={() => handleIncreaseQuantity(item.id, item.modifiers)}>
                     <img src={plus} alt="Plus" />
                   </button>
                 </div>

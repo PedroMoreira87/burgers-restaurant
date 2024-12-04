@@ -25,15 +25,15 @@ export interface IItem {
   id: number;
   name: string;
   description?: string | null;
-  alcoholic: number;
+  alcoholic?: number;
   price: number;
-  position: number;
-  visible: number;
-  availabilityType: string;
-  sku: string;
+  position?: number;
+  visible?: number;
+  availabilityType?: string;
+  sku?: string;
   images?: IImage[];
   modifiers?: IModifier[];
-  available: boolean;
+  available?: boolean;
 }
 
 export interface IModifier {
@@ -48,10 +48,9 @@ export interface IModifierItem {
   id: number;
   name: string;
   price: number;
-  maxChoices: number;
-  position: number;
-  visible: number;
-  availabilityType: string;
+  position?: number;
+  visible?: number;
+  availabilityType?: string;
   qty?: number;
-  available: boolean;
+  available?: boolean;
 }
