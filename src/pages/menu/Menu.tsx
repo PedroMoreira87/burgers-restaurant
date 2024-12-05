@@ -59,11 +59,11 @@ const Menu = () => {
   //   return menu?.sections.find((item) => item.name.toLowerCase() === name)?.images[0].image || '';
   // };
 
-  const handleDecreaseQuantity = (id: string, modifiers: IModifierItem[]) => {
+  const handleDecreaseQuantity = (id: number, modifiers: IModifierItem[]) => {
     dispatch(cartActions.removeItemFromCart({ id, modifiers }));
   };
 
-  const handleIncreaseQuantity = (id: string, modifiers: IModifierItem[]) => {
+  const handleIncreaseQuantity = (id: number, modifiers: IModifierItem[]) => {
     dispatch(
       cartActions.addItemToCart({
         id,
