@@ -83,43 +83,45 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, selectedItem }) => {
         <button className="modal__close" onClick={onClose}>
           <img src={close} alt="Close" />
         </button>
-        <img src={selectedItem.images?.[0]?.image || noImage} alt={selectedItem.name} />
-        <div className="modal__title">
-          <h2>{selectedItem.name}</h2>
-          <p>{selectedItem.description}</p>
-        </div>
-        {!selectedItem.modifiers && (
-          <div className="modal__subtitle">
-            <p>{`${t('price')}: ${t('currency')}${selectedItem.price.toFixed(2)}`}</p>
+        <div className="modal__body">
+          <img src={selectedItem.images?.[0]?.image || noImage} alt={selectedItem.name} />
+          <div className="modal__title">
+            <h2>{selectedItem.name}</h2>
+            <p>{selectedItem.description}</p>
           </div>
-        )}
-        {selectedItem.modifiers?.map((modifier: IModifier) => (
-          <div key={modifier.id}>
+          {!selectedItem.modifiers && (
             <div className="modal__subtitle">
-              <p>{modifier.name}</p>
-              <p>
-                {`${t('select')} ${modifier.maxChoices}`}
-                {modifier.maxChoices === 1 ? ` ${t('option')}` : ` ${t('options')}`}
-              </p>
+              <p>{`${t('price')}: ${t('currency')}${selectedItem.price.toFixed(2)}`}</p>
             </div>
-            {modifier.items.map((option: IModifierItem) => (
-              <label key={option.id} className="modal__modifier-option">
-                <div className="modal__modifier-option-text">
-                  <p>{option.name}</p>
-                  <p> {`${t('currency')}${option.price.toFixed(2)}`}</p>
-                </div>
-                <input
-                  className="modal__radio-input"
-                  type="radio"
-                  name={`modifier-${modifier.id}`}
-                  value={option.id}
-                  onChange={() => handleModifierChange(modifier.id, option)}
-                  disabled={!option.available}
-                />
-              </label>
-            ))}
-          </div>
-        ))}
+          )}
+          {selectedItem.modifiers?.map((modifier: IModifier) => (
+            <div key={modifier.id}>
+              <div className="modal__subtitle">
+                <p>{modifier.name}</p>
+                <p>
+                  {`${t('select')} ${modifier.maxChoices}`}
+                  {modifier.maxChoices === 1 ? ` ${t('option')}` : ` ${t('options')}`}
+                </p>
+              </div>
+              {modifier.items.map((option: IModifierItem) => (
+                <label key={option.id} className="modal__modifier-option">
+                  <div className="modal__modifier-option-text">
+                    <p>{option.name}</p>
+                    <p> {`${t('currency')}${option.price.toFixed(2)}`}</p>
+                  </div>
+                  <input
+                    className="modal__radio-input"
+                    type="radio"
+                    name={`modifier-${modifier.id}`}
+                    value={option.id}
+                    onChange={() => handleModifierChange(modifier.id, option)}
+                    disabled={!option.available}
+                  />
+                </label>
+              ))}
+            </div>
+          ))}
+        </div>
         {isFooterVisible && (
           <div className="modal__footer">
             <div className="modal__quantity-control">
