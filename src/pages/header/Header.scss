@@ -36,7 +36,8 @@
   }
 
   @media (width <= 768px) {
-    &__tab:nth-child(2), &__tab:nth-child(3) {
+    &__tab:nth-child(2),
+    &__tab:nth-child(3) {
       display: none;
     }
   }
