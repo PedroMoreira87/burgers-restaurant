@@ -131,7 +131,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, selectedItem }) => {
                 <img src={plus} alt="Plus" />
               </button>
             </div>
-            <button className="modal__add-to-basket" onClick={handleAddToBasket}>
+            <button className="modal__add-to-order" onClick={handleAddToBasket}>
               <p>
                 {t('add-to-order')} • {t('currency')}
                 {totalPrice.toFixed(2)}
@@ -141,7 +141,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, selectedItem }) => {
         )}
         {!selectedItem.modifiers && (
           <div className="modal__footer">
-            <button className="modal__add-to-basket" onClick={handleAddToBasket}>
+            <button className="modal__add-to-order" onClick={handleAddToBasket}>
               <p>
                 {t('add-to-order')} • {t('currency')}
                 {totalPrice.toFixed(2)}

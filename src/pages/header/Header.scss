@@ -35,6 +35,12 @@
     }
   }
 
+  @media (width <= 768px) {
+    &__tab:nth-child(2), &__tab:nth-child(3) {
+      display: none;
+    }
+  }
+
   &__text {
     color: $primary-white;
     font-size: 1.25rem;

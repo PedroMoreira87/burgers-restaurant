@@ -47,11 +47,6 @@
     &:hover {
       background-color: $secondary-color-hover;
     }
-
-    @media (width <= 768px) {
-      align-items: flex-start;
-      flex-direction: column;
-    }
   }
 
   &__data-text {

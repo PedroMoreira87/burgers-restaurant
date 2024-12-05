@@ -7,12 +7,14 @@
   "burger": "Hambúrguer",
   "desserts": "Sobremesas",
   "drinks": "Bebidas",
-  "cart": "Carrinho",
+  "basket": "Carrinho",
   "subtotal": "Subtotal",
   "total": "Total",
   "select": "Selecione o máximo de",
   "option": "opção",
   "options": "opções",
   "price": "Preço",
-  "add-to-order": "Adicionar ao pedido"
+  "add-to-order": "Adicionar ao pedido",
+  "checkout-now": "Finalizar compra",
+  "your-basket": "Sua cesta"
 }

@@ -7,12 +7,14 @@
   "burgers": "Burgers",
   "desserts": "Desserts",
   "drinks": "Drinks",
-  "cart": "Cart",
+  "basket": "Basket",
   "subtotal": "Subtotal",
   "total": "Total",
   "select": "Select the maximum of",
   "option": "option",
   "options": "options",
   "price": "Price",
-  "add-to-order": "Add to Order"
+  "add-to-order": "Add to Order",
+  "checkout-now": "Checkout now",
+  "your-basket": "Your basket"
 }
