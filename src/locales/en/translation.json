@@ -17,5 +17,7 @@
   "add-to-order": "Add to Order",
   "checkout-now": "Checkout now",
   "your-basket": "Your basket",
-  "allergy-information": "View allergy information"
+  "allergy-information": "View allergy information",
+  "item": "item",
+  "items": "items"
 }

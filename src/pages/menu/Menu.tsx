@@ -79,6 +79,8 @@ const Menu = () => {
     return cart.items.reduce((total, item) => total + item.totalPrice, 0).toFixed(2);
   };
 
+  const totalItems = cart.items.reduce((total, item) => total + item.quantity, 0);
+
   return (
     <main className="menu">
       <section className="menu__search">
@@ -209,7 +211,9 @@ const Menu = () => {
         </div>
         <div className="menu__footer menu__footer--basket" onClick={() => setIsBasketOpen(true)}>
           <button className="menu__checkout">
-            <p>{t('your-basket')}</p>
+            <p>
+              {t('your-basket')} • {totalItems} {totalItems === 1 ? t('item') : t('items')}
+            </p>
           </button>
         </div>
       </section>

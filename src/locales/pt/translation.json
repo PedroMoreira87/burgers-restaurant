@@ -17,5 +17,7 @@
   "add-to-order": "Adicionar ao pedido",
   "checkout-now": "Finalizar compra",
   "your-basket": "Sua cesta",
-  "allergy-information": "Ver informações sobre alergias"
+  "allergy-information": "Ver informações sobre alergias",
+  "item": "item",
+  "items": "itens"
 }
