@@ -18,10 +18,15 @@ const MenuCategory: React.FC<MenuCategoryProps> = ({ category }) => {
   const { t } = useTranslation();
   const menu = useSelector((state: RootState) => state.menu.data);
   const categorySection = menu?.sections.find((section) => section.name.toLowerCase() === category);
+  const cartItems = useSelector((state: RootState) => state.cart.items);
 
   const [isOpen, setIsOpen] = useState<boolean>(true);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [selectedItem, setSelectedItem] = useState<IItem | null>(null);
+
+  const getItemCount = (itemId: number) => {
+    return cartItems.filter((cartItem) => cartItem.id === itemId).reduce((acc, cartItem) => acc + cartItem.quantity, 0);
+  };
 
   const toggleMenu = () => {
     setIsOpen((prev) => !prev);
@@ -50,7 +55,10 @@ const MenuCategory: React.FC<MenuCategoryProps> = ({ category }) => {
           {categorySection?.items.map((item) => (
             <button className="category__item" key={item.id} onClick={() => openModal(item)}>
               <div className="category__data-text">
-                <div className="category__name">{item.name}</div>
+                <div className="category__count-name">
+                  {getItemCount(item.id) > 0 && <div className="category__count">{getItemCount(item.id)}</div>}
+                  <div className="category__name">{item.name}</div>
+                </div>
                 <div className="category__description">{item.description}</div>
                 <div className="category__price">{`${t('currency')}${item.price.toFixed(2)}`}</div>
               </div>

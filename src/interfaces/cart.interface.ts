@@ -4,7 +4,7 @@ export interface ICartState {
 }
 
 export interface ICart {
-  id: string;
+  id: number;
   price: number;
   quantity: number;
   totalPrice: number;

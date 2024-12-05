@@ -79,7 +79,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, selectedItem }) => {
   return (
     <div className="modal">
       <div className="modal__overlay" onClick={onClose}></div>
-      <div className="modal__content" onClick={handleOpenFooter}>
+      <div className="modal__content">
         <button className="modal__close" onClick={onClose}>
           <img src={close} alt="Close" />
         </button>
@@ -104,7 +104,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, selectedItem }) => {
                 </p>
               </div>
               {modifier.items.map((option: IModifierItem) => (
-                <label key={option.id} className="modal__modifier-option">
+                <label key={option.id} className="modal__modifier-option" onClick={handleOpenFooter}>
                   <div className="modal__modifier-option-text">
                     <p>{option.name}</p>
                     <p> {`${t('currency')}${option.price.toFixed(2)}`}</p>

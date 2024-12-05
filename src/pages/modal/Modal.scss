@@ -42,8 +42,10 @@
   }
 
   &__body {
-    flex: 1 1 auto;
-    overflow-y: auto;
+    @media (width <= 768px) {
+      flex: 1 1 auto;
+      overflow-y: auto;
+    }
   }
 
   &__close {

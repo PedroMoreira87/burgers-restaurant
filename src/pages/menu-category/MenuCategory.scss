@@ -60,6 +60,24 @@
     min-width: 0;
   }
 
+  &__count-name {
+    align-items: center;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+
+  &__count {
+    background-color: $primary-color;
+    border-radius: 0.25rem;
+    color: $primary-white;
+    font-size: 0.875rem;
+    font-weight: 500;
+    height: 1.125rem;
+    padding: 1px 4px;
+    width: 1.125rem
+  }
+
   &__name {
     color: $secondary-black;
     font-size: 1rem;
