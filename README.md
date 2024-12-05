@@ -4,6 +4,8 @@ https://d3m8bov9j9sfzo.cloudfront.net/
 
 Burgers Restaurant is a web application that allows users to explore our delicious menu, place orders, and manage their dining experience effortlessly.
 
+![image alt] (https://github.com/PedroMoreira87/burgers-restaurant/blob/6d42bde03862295998c949225fe90e24ddf3f1ac/Burgers%20Restaurant%20Diagram.drawio.svg)
+
 ---
 
 ## Features
