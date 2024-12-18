@@ -3,7 +3,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import headerReducer from './cart-slice.ts';
 import menuReducer from './menu-slice.ts';
 
-export const store = configureStore({
+const store = configureStore({
   reducer: {
     cart: headerReducer,
     menu: menuReducer,
