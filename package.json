@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "prepare": "husky",
     "eslint": "eslint . --fix",
-    "stylelint": "stylelint \"src/**/*.scss\""
+    "stylelint": "stylelint \"src/**/*.{css,scss}\""
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.4.0",
