@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "prepare": "husky",
-    "eslint": "eslint . --fix"
+    "eslint": "eslint . --fix",
+    "stylelint": "stylelint \"src/**/*.scss\""
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.4.0",
